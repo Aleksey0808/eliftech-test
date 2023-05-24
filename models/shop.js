@@ -5,7 +5,7 @@ const shopSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, 'Set name for contact'],
+      required: [true, 'Set name for shop'],
     },
     favorite: {
       type: Boolean,
