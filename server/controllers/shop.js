@@ -1,4 +1,3 @@
-
 const Shop = require('../models/shop')
 
 const { createError } = require('../helpers')
@@ -11,7 +10,7 @@ const getAll = async (req, res) => {
 
 const getById = async (req, res) => {
   const { shopId } = req.params
-  const result = await Contact.findById(shopId)
+  const result = await Shop.findById(shopId)
   if (!result) {
     throw createError(404, 'Not found')
   }
@@ -19,6 +18,7 @@ const getById = async (req, res) => {
 }
 
 const add = async (req, res) => {
+  console.log(req.body)
   const result = await Shop.create(req.body)
   res.status(201).json(result)
 }

@@ -1,42 +1,56 @@
 [
   {
-    "name": "Spicy McCrispy",
+    "name": "KFC",
+    "favorite": "false",
+    "menu": []
+  },
+  {
+    "name": "McDonald's",
+    "favorite": "false",
+    "menu": []
+  },
+  {
+    "name": "Subway",
+    "favorite": "false",
+    "menu": []
+  },
+  {
+    "name": "Burger King",
+    "favorite": "false",
+    "menu": []
+  },
+  {
+    "name": "Wendy's",
+    "favorite": "false",
+    "menu": []
+  },
+  {
+    "name": "Taco Bell",
+    "favorite": "false",
+    "menu": []
+  },
+  {
+    "name": "Starbucks",
+    "favorite": "false",
+    "menu": []
+  },
+  {
+    "name": "Pizza Hut",
+    "favorite": "false",
+    "menu": []
+  },
+  {
+    "name": "Baskin-Robbins",
     "favorite": "false"
   },
   {
-    "name": "Big Mac",
-    "favorite": "false"
+    "name": "CNHLS",
+    "favorite": "false",
+    "menu": []
   },
   {
-    "name": "Chicken Nuggets",
-    "favorite": "false"
-  },
-  {
-    "name": "Big Burger",
-    "favorite": "false"
-  },
-  {
-    "name": "Big Burger",
-    "favorite": "false"
-  },
-  {
-    "name": "Big Burger",
-    "favorite": "false"
-  },
-  {
-    "name": "Big Burger",
-    "favorite": "false"
-  },
-  {
-    "name": "Big Burger",
-    "favorite": "false"
-  },
-  {
-    "name": "Big Burger",
-    "favorite": "false"
-  },
-  {
-    "name": "Big Burger",
-    "favorite": "false"
+    "name": "Costa",
+    "favorite": "false",
+    "menu": []
   }
 ]

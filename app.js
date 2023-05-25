@@ -3,7 +3,7 @@ const logger = require('morgan')
 const cors = require('cors')
 require('dotenv').config()
 
-const shopRouter = require('./routes/api/shop')
+const shopRouter = require('./server/routes/api/shop')
 
 const app = express()
 

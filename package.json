@@ -6,8 +6,8 @@
     "node": ">=14.20.1"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=production node ./server.js",
-    "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
+    "start": "cross-env NODE_ENV=production node ./server/server.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon ./server/server.js",
     "lint": "eslint app.js",
     "lint:fix": "eslint --fix app.js"
   },
