@@ -17,7 +17,7 @@ import {
 
 const MovieDetails = () => {
   const [cartProducts, setCartProducts] = useState([]);
-  const [addCart, setAddCart] = useState(false);
+  // const [addCart, setAddCart] = useState(false);
   const [products, setProducts] = useState([]);
   const { _id } = useParams();
   const [load, setLoad] = useState(false);
@@ -42,15 +42,11 @@ const MovieDetails = () => {
 
   const handleAddProductToCart = productID => {
     setCartProducts([...cartProducts, productID]);
-    localStorage.setItem('cartProducts', cartProducts);
-    setAddCart(true);
-    localStorage.setItem('addCart', addCart);
   };
 
   const handleRemoveFromCart = productID => {
     const newCartProducts = cartProducts.filter(id => id !== productID);
     setCartProducts(newCartProducts);
-    setAddCart(false);
   };
 
   const location = useLocation();
@@ -74,7 +70,6 @@ const MovieDetails = () => {
           {products.menu
             ? products.menu.map(({ id, dish, favorite }) => {
                 let haveInCart = false;
-
                 cartProducts.forEach(productID => {
                   if (productID === id) {
                     haveInCart = true;
@@ -104,6 +99,20 @@ const MovieDetails = () => {
               })
             : 'Sorry, we don`t have any cast information for this movie'}
         </List>
+        <h1>Ваша корзина</h1>
+        {cartProducts.length > 0
+          ? cartProducts.map(productID => {
+              const productIndex = products.menu.findIndex(product => {
+                return product.id === productID;
+              });
+              let { dish, id } = products.menu[productIndex];
+              return (
+                <List title={dish} key={id}>
+                  <p>{dish}</p>
+                </List>
+              );
+            })
+          : 'Ваша корзина пуста! :('}
       </div>
       <Suspense fallback={<Loader />}>
         <Outlet />
