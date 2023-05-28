@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { MovieLink, List } from './TrendingList.styled';
 
 const TrendingList = ({ shop }) => {
-  console.log(shop);
+  // console.log(shop);
   const location = useLocation();
 
   return (

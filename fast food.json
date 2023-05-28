@@ -2,55 +2,67 @@
   {
     "name": "KFC",
     "favorite": "false",
-    "menu": []
+    "menu": [{"id": "1", "dish": "burger", "favorite": "false"}, {"id": "2","dish": "big mack", "favorite": "false"}, {"id": "3","dish": "french fries", "favorite": "false"}],
+    "url": "Image"
   },
   {
     "name": "McDonald's",
     "favorite": "false",
-    "menu": []
+    "menu": [{"id": "1", "dish": "burger", "favorite": "false"}, {"id": "2","dish": "big mack", "favorite": "false"}, {"id": "3","dish": "french fries", "favorite": "false"}],
+    "url": "Image"
   },
   {
     "name": "Subway",
     "favorite": "false",
-    "menu": []
+    "menu": [{"id": "1", "dish": "burger", "favorite": "false"}, {"id": "2","dish": "big mack", "favorite": "false"}, {"id": "3","dish": "french fries", "favorite": "false"}],
+    "url": "Image"
   },
   {
     "name": "Burger King",
     "favorite": "false",
-    "menu": []
+    "menu": [{"id": "1", "dish": "burger", "favorite": "false"}, {"id": "2","dish": "big mack", "favorite": "false"}, {"id": "3","dish": "french fries", "favorite": "false"}],
+    "url": "Image"
   },
   {
     "name": "Wendy's",
     "favorite": "false",
-    "menu": []
+    "menu": [{"id": "1", "dish": "burger", "favorite": "false"}, {"id": "2","dish": "big mack", "favorite": "false"}, {"id": "3","dish": "french fries", "favorite": "false"}],
+    "url": "Image"
   },
   {
     "name": "Taco Bell",
     "favorite": "false",
-    "menu": []
+    "menu": [{"id": "1", "dish": "burger", "favorite": "false"}, {"id": "2","dish": "big mack", "favorite": "false"}, {"id": "3","dish": "french fries", "favorite": "false"}],
+    "url": "Image"
   },
   {
     "name": "Starbucks",
     "favorite": "false",
-    "menu": []
+    "menu": [{"id": "1", "dish": "burger", "favorite": "false"}, {"id": "2","dish": "big mack", "favorite": "false"}, {"id": "3","dish": "french fries", "favorite": "false"}],
+    "url": "Image"
   },
   {
     "name": "Pizza Hut",
     "favorite": "false",
-    "menu": []
+    "menu": [{"id": "1", "dish": "burger", "favorite": "false"}, {"id": "2","dish": "big mack", "favorite": "false"}, {"id": "3","dish": "french fries", "favorite": "false"}],
+    "url": "Image"
   },
   {
     "name": "Baskin-Robbins",
-    "favorite": "false"
+    "favorite": "false",
+    "menu": [{"id": "1", "dish": "burger", "favorite": "false"}, {"id": "2","dish": "big mack", "favorite": "false"}, {"id": "3","dish": "french fries", "favorite": "false"}],
+    "url": "Image"
   },
   {
     "name": "CNHLS",
     "favorite": "false",
-    "menu": []
+    "menu": [{"id": "1", "dish": "burger", "favorite": "false"}, {"id": "2","dish": "big mack", "favorite": "false"}, {"id": "3","dish": "french fries", "favorite": "false"}],
+    "url": "Image"
   },
   {
     "name": "Costa",
     "favorite": "false",
-    "menu": []
+    "menu": [{"id": "1", "dish": "burger"}, {"id": "2","dish": "big mack", "favorite": "false"}, {"id": "3","dish": "french fries", "favorite": "false"}],
+    "url": "Image"
   }
 ]

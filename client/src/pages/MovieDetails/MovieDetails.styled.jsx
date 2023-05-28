@@ -1,11 +1,30 @@
 import styled from '@emotion/styled';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 
 export const Icon = styled(IoMdArrowRoundBack)`
   padding: 0 0 10px 0;
   height: 40px;
   width: 40px;
+`;
+
+export const MovieLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  padding: 2px 8px;
+  &:hover {
+    border-radius: 5px;
+    box-shadow: 1px 2px 4px 3px rgba(0, 0, 0, 0.5);
+  }
+`;
+
+export const List = styled.ul`
+  padding: 20px 0 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  list-style-type: square;
 `;
 
 export const Container = styled.div`

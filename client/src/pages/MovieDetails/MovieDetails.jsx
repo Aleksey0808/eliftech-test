@@ -6,17 +6,26 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../../components/Loader/Loader';
 
-import { Icon, Container, Title, Text, SubTitle } from './MovieDetails.styled';
+import {
+  Icon,
+  Container,
+  Title,
+  Text,
+  SubTitle,
+  List,
+} from './MovieDetails.styled';
 
 const MovieDetails = () => {
-  const [shop, setShop] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
+  const [addCart, setAddCart] = useState(false);
+  const [products, setProducts] = useState([]);
   const { _id } = useParams();
   const [load, setLoad] = useState(false);
 
   useEffect(() => {
     setLoad(true);
     goodsShop(_id)
-      .then(id => setShop(id))
+      .then(id => setProducts(id))
       .catch(error => {
         toast.error('Error ofrequast!', { autoClose: 1500 });
         console.log(error);
@@ -25,6 +34,24 @@ const MovieDetails = () => {
         setLoad(false);
       });
   }, [_id]);
+
+  // const handleClickButton = e => {
+  //   const option = e.target.name;
+  //   setOrder(prevState => [option, ...prevState]);
+  // };
+
+  const handleAddProductToCart = productID => {
+    setCartProducts([...cartProducts, productID]);
+    localStorage.setItem('cartProducts', cartProducts);
+    setAddCart(true);
+    localStorage.setItem('addCart', addCart);
+  };
+
+  const handleRemoveFromCart = productID => {
+    const newCartProducts = cartProducts.filter(id => id !== productID);
+    setCartProducts(newCartProducts);
+    setAddCart(false);
+  };
 
   const location = useLocation();
   const backLinkHref = useRef(location.state?.from ?? '/movie');
@@ -39,11 +66,44 @@ const MovieDetails = () => {
       </Link>
       {load && <Loader />}
       <div>
-        <Title>{shop.name}</Title>
+        <Title>{products.name}</Title>
 
         <SubTitle>Overview</SubTitle>
-        <Text>{shop._id}</Text>
         <SubTitle>Genres</SubTitle>
+        <List>
+          {products.menu
+            ? products.menu.map(({ id, dish, favorite }) => {
+                let haveInCart = false;
+
+                cartProducts.forEach(productID => {
+                  if (productID === id) {
+                    haveInCart = true;
+                  }
+                });
+                return (
+                  <li key={id}>
+                    <Text>{dish}</Text>
+                    <Text>{favorite}</Text>
+                    {!haveInCart ? (
+                      <button
+                        onClick={() => handleAddProductToCart(id)}
+                        type="primary"
+                      >
+                        add to cart
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleRemoveFromCart(id)}
+                        type="primary"
+                      >
+                        delete from cart
+                      </button>
+                    )}
+                  </li>
+                );
+              })
+            : 'Sorry, we don`t have any cast information for this movie'}
+        </List>
       </div>
       <Suspense fallback={<Loader />}>
         <Outlet />
