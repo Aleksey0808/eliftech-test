@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../../components/Loader/Loader';
+import Movies from '../../pages/Movies';
 
 import {
   Icon,
@@ -13,16 +14,26 @@ import {
   Text,
   SubTitle,
   List,
+  MovieLink,
 } from './MovieDetails.styled';
 
+const LOCAL_STORAGE_ADD = 'add';
+
 const MovieDetails = () => {
-  const [cartProducts, setCartProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState(
+    () => JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD)) || []
+  );
   // const [addCart, setAddCart] = useState(false);
   const [products, setProducts] = useState([]);
   const { _id } = useParams();
   const [load, setLoad] = useState(false);
 
+  // let localList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD));
+  // console.log(products);
+  console.log(products);
+
   useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_ADD, JSON.stringify(cartProducts));
     setLoad(true);
     goodsShop(_id)
       .then(id => setProducts(id))
@@ -33,7 +44,7 @@ const MovieDetails = () => {
       .finally(() => {
         setLoad(false);
       });
-  }, [_id]);
+  }, [_id, cartProducts]);
 
   // const handleClickButton = e => {
   //   const option = e.target.name;
@@ -51,6 +62,8 @@ const MovieDetails = () => {
 
   const location = useLocation();
   const backLinkHref = useRef(location.state?.from ?? '/movie');
+
+  // console.log(products.menu);
 
   return (
     <Container>
@@ -99,21 +112,28 @@ const MovieDetails = () => {
               })
             : 'Sorry, we don`t have any cast information for this movie'}
         </List>
-        <h1>Ваша корзина</h1>
-        {cartProducts.length > 0
-          ? cartProducts.map(productID => {
-              const productIndex = products.menu.findIndex(product => {
-                return product.id === productID;
-              });
-              let { dish, id } = products.menu[productIndex];
-              return (
-                <List title={dish} key={id}>
-                  <p>{dish}</p>
-                </List>
-              );
-            })
-          : 'Ваша корзина пуста! :('}
+
+        <List>
+          <h1>shopping cart</h1>
+          {/* {cartProducts.length > 0
+            ? cartProducts.map(productID => {
+                const productIndex = products.menu.findIndex(product => {
+                  return product.id === productID;
+                });
+                let { dish, id } = products.menu[productIndex];
+                return (
+                  <li title={dish} key={id}>
+                    {dish}
+                  </li>
+                );
+              })
+            : 'your shopping cart is null! :('} */}
+        </List>
       </div>
+      {/* <Movies cart={cartProducts} /> */}
+      {/* <MovieLink to={`/cart`} state={cartProducts}>
+        shopping cart
+      </MovieLink> */}
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>

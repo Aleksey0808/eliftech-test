@@ -24,8 +24,8 @@ const TrendingList = ({ shop }) => {
 TrendingList.prototype = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string,
+      _id: PropTypes.number.isRequired,
+      name: PropTypes.string,
     })
   ),
   openModal: PropTypes.func.isRequired,
