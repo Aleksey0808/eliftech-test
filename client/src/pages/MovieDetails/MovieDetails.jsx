@@ -30,7 +30,7 @@ const MovieDetails = () => {
 
   // let localList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD));
   // console.log(products);
-  console.log(products);
+  // console.log(products);
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_ADD, JSON.stringify(cartProducts));
@@ -52,6 +52,7 @@ const MovieDetails = () => {
   // };
 
   const handleAddProductToCart = productID => {
+    console.log(productID)
     setCartProducts([...cartProducts, productID]);
   };
 
@@ -121,6 +122,7 @@ const MovieDetails = () => {
                   return product.id === productID;
                 });
                 let { dish, id } = products.menu[productIndex];
+                console.log(productIndex)
                 return (
                   <li title={dish} key={id}>
                     {dish}

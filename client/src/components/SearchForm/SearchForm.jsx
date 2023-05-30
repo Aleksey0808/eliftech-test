@@ -19,7 +19,7 @@ const SearchForm = () => {
 
   const LOCAL_STORAGE_ADD = 'add';
   const cartProducts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD));
-  console.log(products);
+  console.log(cartProducts);
 
   useEffect(() => {
     setLoad(true);
@@ -98,19 +98,33 @@ const SearchForm = () => {
         <h2>Overview</h2>
         <h2>Genres</h2>
         <ul>
-          {products
+          {cartProducts
             ? products.map(({ menu }) => {
                 // console.log(menu);
-                menu.forEach(data => {
-                  console.log(data.id);
+               return menu.map(({id}) => {
+                  const productIndex = cartProducts.findIndex(productId => {
+                    return id === productId;
+                  })
+                  if (menu[productIndex]) {
+                    let { dish,id } = menu[productIndex];
+                    console.log(id)
+                     return (
+                        <li key={id}>
+                          <p>{dish}</p>
+                        </li>
+                );
+                  }
+                  
+                 
+                  console.log("bug!")
                 });
 
-                return (
-                  <li key={menu.id}>
-                    {/* <p>{menu.dish}</p>
-                    <p>{menu.favorite}</p> */}
-                  </li>
-                );
+                // return (
+                //   <li key={menu.id}>
+                //     <p>{menu.dish}</p>
+                //     <p>{menu.favorite}</p>
+                //   </li>
+                // );
               })
             : 'Sorry, we don`t have any cast information for this movie'}
         </ul>
