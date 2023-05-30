@@ -10,18 +10,18 @@ import Loader from '../../components/Loader/Loader';
 import { Wrapper, Input, Icon, SearchButton, Forma } from './SearchForm.styled';
 
 import { allShop } from '../../utils/db-api';
-
+const LOCAL_STORAGE_ADD = 'add';
 const SearchForm = () => {
-  // const [movies, setMovies] = useState([]);
   // const [searchParams, setSearchParams] = useSearchParams();
   const [load, setLoad] = useState(false);
   const [products, setProducts] = useState([]);
-
-  const LOCAL_STORAGE_ADD = 'add';
-  const cartProducts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD));
-  console.log(cartProducts);
-
+  const [cartProducts, setCartProducts] = useState(
+    () => JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD)) || []
+  );
+  const [count, setCount] = useState(0);
+  // console.log(products);
   useEffect(() => {
+    setCartProducts(JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD)));
     setLoad(true);
     allShop()
       .then(data => setProducts(data))
@@ -33,6 +33,13 @@ const SearchForm = () => {
         setLoad(false);
       });
   }, []);
+
+  const handleRemoveFromCart = productID => {
+    const newCartProducts = cartProducts.filter(
+      item => item.id !== productID.id
+    );
+    setCartProducts(newCartProducts);
+  };
 
   const handleSubmit = (query, { resetForm }) => {
     //   if (!query.query.trim()) {
@@ -46,34 +53,12 @@ const SearchForm = () => {
     //   }
   };
 
-  // useEffect(() => {
-  //   const movieTitle = searchParams.get('query') ?? '';
-  //   if (movieTitle) {
-  //     searchMovies(movieTitle)
-  //       .then(api =>
-  //         api.results.length
-  //           ? setMovies(api.results)
-  //           : toast.error('Nothing was found matching your search!', {
-  //               autoClose: 1500,
-  //             })
-  //       )
-  //       .catch(error => {
-  //         toast.error('Error of requast!', { autoClose: 1500 });
-  //         console.log(error);
-  //       })
-  //       .finally(() => {
-  //         setLoad(false);
-  //       });
-  //   }
-  // }, [searchParams]);
-
   const initialValues = {
     query: '',
   };
 
   return (
     <Wrapper>
-      hello
       <ToastContainer />
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Forma>
@@ -95,38 +80,29 @@ const SearchForm = () => {
       <div>
         <h1>{products.name}</h1>
 
-        <h2>Overview</h2>
-        <h2>Genres</h2>
-        <ul>
-          {cartProducts
-            ? products.map(({ menu }) => {
-                // console.log(menu);
-               return menu.map(({id}) => {
-                  const productIndex = cartProducts.findIndex(productId => {
-                    return id === productId;
-                  })
-                  if (menu[productIndex]) {
-                    let { dish,id } = menu[productIndex];
-                    console.log(id)
-                     return (
-                        <li key={id}>
-                          <p>{dish}</p>
-                        </li>
-                );
-                  }
-                  
-                 
-                  console.log("bug!")
-                });
+        <h2>Shopping cart</h2>
 
-                // return (
-                //   <li key={menu.id}>
-                //     <p>{menu.dish}</p>
-                //     <p>{menu.favorite}</p>
-                //   </li>
-                // );
+        <ul>
+          {cartProducts.length > 0
+            ? cartProducts.map(item => {
+                return (
+                  <li title={item.dish} key={item.id}>
+                    <p>{item.dish}</p>
+                    {<button onClick={() => setCount(count + 1)}>+</button>}
+                    {count}
+                    {<button onClick={() => setCount(count - 1)}>-</button>}
+                    {
+                      <button
+                        onClick={() => handleRemoveFromCart(item)}
+                        type="primary"
+                      >
+                        delete from cart
+                      </button>
+                    }
+                  </li>
+                );
               })
-            : 'Sorry, we don`t have any cast information for this movie'}
+            : 'cart is empty! :('}
         </ul>
       </div>
     </Wrapper>

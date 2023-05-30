@@ -23,14 +23,10 @@ const MovieDetails = () => {
   const [cartProducts, setCartProducts] = useState(
     () => JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD)) || []
   );
-  // const [addCart, setAddCart] = useState(false);
+
   const [products, setProducts] = useState([]);
   const { _id } = useParams();
   const [load, setLoad] = useState(false);
-
-  // let localList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD));
-  // console.log(products);
-  // console.log(products);
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_ADD, JSON.stringify(cartProducts));
@@ -52,19 +48,18 @@ const MovieDetails = () => {
   // };
 
   const handleAddProductToCart = productID => {
-    console.log(productID)
     setCartProducts([...cartProducts, productID]);
   };
 
   const handleRemoveFromCart = productID => {
-    const newCartProducts = cartProducts.filter(id => id !== productID);
+    const newCartProducts = cartProducts.filter(
+      item => item.id !== productID.id
+    );
     setCartProducts(newCartProducts);
   };
 
   const location = useLocation();
   const backLinkHref = useRef(location.state?.from ?? '/movie');
-
-  // console.log(products.menu);
 
   return (
     <Container>
@@ -82,27 +77,27 @@ const MovieDetails = () => {
         <SubTitle>Genres</SubTitle>
         <List>
           {products.menu
-            ? products.menu.map(({ id, dish, favorite }) => {
+            ? products.menu.map(item => {
                 let haveInCart = false;
                 cartProducts.forEach(productID => {
-                  if (productID === id) {
+                  if (productID.id === item.id) {
                     haveInCart = true;
                   }
                 });
                 return (
-                  <li key={id}>
-                    <Text>{dish}</Text>
-                    <Text>{favorite}</Text>
+                  <li key={item.id}>
+                    <Text>{item.dish}</Text>
+                    <Text>{item.favorite}</Text>
                     {!haveInCart ? (
                       <button
-                        onClick={() => handleAddProductToCart(id)}
+                        onClick={() => handleAddProductToCart(item)}
                         type="primary"
                       >
                         add to cart
                       </button>
                     ) : (
                       <button
-                        onClick={() => handleRemoveFromCart(id)}
+                        onClick={() => handleRemoveFromCart(item)}
                         type="primary"
                       >
                         delete from cart
@@ -116,26 +111,8 @@ const MovieDetails = () => {
 
         <List>
           <h1>shopping cart</h1>
-          {/* {cartProducts.length > 0
-            ? cartProducts.map(productID => {
-                const productIndex = products.menu.findIndex(product => {
-                  return product.id === productID;
-                });
-                let { dish, id } = products.menu[productIndex];
-                console.log(productIndex)
-                return (
-                  <li title={dish} key={id}>
-                    {dish}
-                  </li>
-                );
-              })
-            : 'your shopping cart is null! :('} */}
         </List>
       </div>
-      {/* <Movies cart={cartProducts} /> */}
-      {/* <MovieLink to={`/cart`} state={cartProducts}>
-        shopping cart
-      </MovieLink> */}
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
