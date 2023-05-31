@@ -48,7 +48,8 @@ const MovieDetails = () => {
   // };
 
   const handleAddProductToCart = productID => {
-    setCartProducts([...cartProducts, productID]);
+    
+    setCartProducts([...cartProducts, productID ]);
   };
 
   const handleRemoveFromCart = productID => {
@@ -90,7 +91,7 @@ const MovieDetails = () => {
                     <Text>{item.favorite}</Text>
                     {!haveInCart ? (
                       <button
-                        onClick={() => handleAddProductToCart(item)}
+                        onClick={() => handleAddProductToCart({...item, count: 1})}
                         type="primary"
                       >
                         add to cart

@@ -62,7 +62,7 @@
   {
     "name": "Costa",
     "favorite": "false",
-    "menu": [{"id": "31", "dish": "Costa burger"}, {"id": "32","dish": "Costa big mack", "favorite": "false"}, {"id": "33","dish": "Costa french fries", "favorite": "false"}],
+    "menu": [{"id": "31", "dish": "Costa burger", "favorite": "false"}, {"id": "32","dish": "Costa big mack", "favorite": "false"}, {"id": "33","dish": "Costa french fries", "favorite": "false"}],
     "url": "Image"
   }
 ]

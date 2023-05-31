@@ -18,10 +18,9 @@ const SearchForm = () => {
   const [cartProducts, setCartProducts] = useState(
     () => JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD)) || []
   );
-  const [count, setCount] = useState(0);
-  // console.log(products);
+  // console.log(cartProducts)
   useEffect(() => {
-    setCartProducts(JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD)));
+    localStorage.setItem(LOCAL_STORAGE_ADD, JSON.stringify(cartProducts))
     setLoad(true);
     allShop()
       .then(data => setProducts(data))
@@ -32,13 +31,26 @@ const SearchForm = () => {
       .finally(() => {
         setLoad(false);
       });
-  }, []);
+  }, [cartProducts]);
 
   const handleRemoveFromCart = productID => {
+    console.log(productID)
     const newCartProducts = cartProducts.filter(
       item => item.id !== productID.id
     );
     setCartProducts(newCartProducts);
+  };
+
+  const countI = product => {
+    const newCount = product.count + 1
+    console.log(product)
+    
+    setCartProducts([...cartProducts],product.count = newCount);
+  };
+
+  const countD = product => {
+    const newCount = product.count - 1
+    setCartProducts([...cartProducts],product.count = newCount);
   };
 
   const handleSubmit = (query, { resetForm }) => {
@@ -84,13 +96,13 @@ const SearchForm = () => {
 
         <ul>
           {cartProducts.length > 0
-            ? cartProducts.map(item => {
+            ? cartProducts.map(item => { 
                 return (
                   <li title={item.dish} key={item.id}>
                     <p>{item.dish}</p>
-                    {<button onClick={() => setCount(count + 1)}>+</button>}
-                    {count}
-                    {<button onClick={() => setCount(count - 1)}>-</button>}
+                    {<button onClick={() => countI(item)}>+</button>}
+                    {item.count}
+                    {<button onClick={() => countD(item)}>-</button>}
                     {
                       <button
                         onClick={() => handleRemoveFromCart(item)}
