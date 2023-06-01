@@ -3,22 +3,51 @@ import { HiSearch } from 'react-icons/hi';
 import { Form, Field } from 'formik';
 
 export const Wrapper = styled.div`
-position:relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
   margin-bottom: 16px;
   text-transform: uppercase;
 `;
+
+export const WrapperCart = styled.div`
+  border: 10px solid #ece89d;
+  display: flex;
+  width: 800px;
+`;
+
+export const List = styled.ul`
+  /* padding: 20px 0 20px;
+  margin: 0; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  row-gap: 10px;
+  list-style-type: square;
+
+  flex-wrap: wrap;
+`;
+
+export const Item = styled.li`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 20px;
+  row-gap: 5px;
+  padding-bottom: 20px;
+  width: 220px;
+`;
+
 export const Forma = styled(Form)`
-position:absolute;
-top: 0;
-left: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content:flex-start;
-  min-width: 600px;
+  justify-content: flex-start;
+  width: 400px;
   background-color: #fff;
   border-radius: 3px;
   overflow: hidden;
@@ -81,74 +110,43 @@ export const Title = styled.h2`
   margin-bottom: 10px;
 `;
 
-export const List = styled.ul`
-  padding: 20px 0 20px; 
-  margin: 0;
-  display: flex; 
-  flex-direction: column;
-  row-gap: 10px;
-  list-style-type: square;
-  width: 100%;
-  flex-wrap: wrap;
-`;
-
-export const Item = styled.li`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  
-  row-gap: 5px;
-  padding-bottom: 20px;
-`;
-
 export const Quantity = styled.div`
   display: flex;
   row-gap: 5px;
-  `;
+`;
 
 export const Button = styled.button`
-width: 40px;
-border: 1px solid black;
-border-radius: 60px;
-color: #000000;
-background-color: #e0d6ba;
-cursor: pointer;
-font-size: 15px;
+  width: 40px;
+  border: 1px solid black;
+  border-radius: 60px;
+  color: #000000;
+  background-color: #e0d6ba;
+  cursor: pointer;
+  font-size: 15px;
 `;
 
 export const Count = styled.p`
-padding: 5px;
+  padding: 5px;
 
-font-size: 18px;
-line-height: 14px;
-letter-spacing: 0.02em;
-
+  font-size: 18px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
 `;
 
 export const NameProduct = styled.p`
   font-weight: 500;
-  font-size: 18px;
-  line-height: 14px;
-  letter-spacing: 0.03em;
+  font-size: 16px;
+  line-height: 6px;
+  letter-spacing: 0.01em;
   margin-bottom: 10px;
 `;
 
 export const RemoveFromCart = styled.button`
- width: 110px;
-border: 1px solid black;
-border-radius: 5px;
-color: #000000;
-background-color: #e0d6ba;
-cursor: pointer;
-font-size: 15px;
-`;
-
-export const WrapperCart = styled.div`
-position:absolute;
-top: 0;
-right: 0;
- display: flex;
- flex-direction: flex-end;
- justify-content:flex-end
+  width: 110px;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: #000000;
+  background-color: #e0d6ba;
+  cursor: pointer;
+  font-size: 15px;
 `;

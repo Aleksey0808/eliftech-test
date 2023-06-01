@@ -41,7 +41,7 @@ const SearchForm = () => {
   const [cartProducts, setCartProducts] = useState(
     () => JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD)) || []
   );
-  const [form, setForm] = useState([])
+  const [form, setForm] = useState([]);
   // console.log(cartProducts)
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_ADD, JSON.stringify(cartProducts));
@@ -58,7 +58,6 @@ const SearchForm = () => {
   }, [cartProducts]);
 
   const handleRemoveFromCart = productID => {
-    console.log(productID);
     const newCartProducts = cartProducts.filter(
       item => item.id !== productID.id
     );
@@ -78,15 +77,19 @@ const SearchForm = () => {
 
   const handleSubmit = (query, { resetForm }) => {
     if (!query) {
-      console.log('error')
+      console.log('error');
       toast.error('Enter a request!', { autoClose: 1500 });
       setLoad(false);
     } else {
-      setForm([{user: query, cart: cartProducts}])
+      setForm([{ user: query, cart: cartProducts }]);
       console.log(form);
 
       resetForm();
     }
+  };
+
+  const totalPrice = () => {
+    return cartProducts.reduce((acc, item) => acc + item.price * item.count, 0);
   };
 
   const initialValues = {
@@ -145,6 +148,11 @@ const SearchForm = () => {
           </Forma>
         </Formik>
       }
+      {
+        <div>
+          <Text>total price:{totalPrice()}</Text>
+        </div>
+      }
       {/* {load && <Loader />} */}
       {/* {searchParams ? (
         <TrendingList movies={movies} />
@@ -160,17 +168,18 @@ const SearchForm = () => {
                 return (
                   <Item title={item.dish} key={item.id}>
                     <NameProduct>{item.dish}</NameProduct>
-                  <Quantity>
-                    {<Button onClick={() => countD(item)}>-</Button>}
-                    <Count>{item.count}</Count>
-                    {<Button onClick={() => countI(item)}>+</Button>}
-                  </Quantity>
+                    <Text>price:{item.price}</Text>
+                    <Quantity>
+                      {<Button onClick={() => countD(item)}>-</Button>}
+                      <Count>{item.count}</Count>
+                      {<Button onClick={() => countI(item)}>+</Button>}
+                    </Quantity>
                     {
                       <RemoveFromCart
                         onClick={() => handleRemoveFromCart(item)}
                         type="primary"
                       >
-                        delete from cart
+                        delete
                       </RemoveFromCart>
                     }
                   </Item>

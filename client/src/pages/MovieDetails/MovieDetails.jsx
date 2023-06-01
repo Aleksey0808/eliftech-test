@@ -48,8 +48,7 @@ const MovieDetails = () => {
   // };
 
   const handleAddProductToCart = productID => {
-    
-    setCartProducts([...cartProducts, productID ]);
+    setCartProducts([...cartProducts, productID]);
   };
 
   const handleRemoveFromCart = productID => {
@@ -64,13 +63,14 @@ const MovieDetails = () => {
 
   return (
     <Container>
+      {load && <Loader />}
       <ToastContainer />
 
       <Link to={backLinkHref.current}>
         {' '}
         <Icon />
       </Link>
-      {load && <Loader />}
+
       <div>
         <Title>{products.name}</Title>
 
@@ -88,10 +88,12 @@ const MovieDetails = () => {
                 return (
                   <li key={item.id}>
                     <Text>{item.dish}</Text>
-                    <Text>{item.favorite}</Text>
+                    <Text>price:{item.price}</Text>
                     {!haveInCart ? (
                       <button
-                        onClick={() => handleAddProductToCart({...item, count: 1})}
+                        onClick={() =>
+                          handleAddProductToCart({ ...item, count: 1 })
+                        }
                         type="primary"
                       >
                         add to cart
@@ -109,11 +111,7 @@ const MovieDetails = () => {
               })
             : 'Sorry, we don`t have any cast information for this movie'}
         </List>
-
       </div>
-      <Suspense fallback={<Loader />}>
-        <Outlet />
-      </Suspense>
     </Container>
   );
 };
