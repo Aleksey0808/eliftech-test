@@ -110,9 +110,6 @@ const MovieDetails = () => {
             : 'Sorry, we don`t have any cast information for this movie'}
         </List>
 
-        <List>
-          <h1>shopping cart</h1>
-        </List>
       </div>
       <Suspense fallback={<Loader />}>
         <Outlet />

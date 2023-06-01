@@ -10,12 +10,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../../components/Loader/Loader';
 import {
   Wrapper,
-  // Input,
-  // Icon,
-  // SearchButton,
   Forma,
   Label,
   Text,
+  Title,
+  List,
+  Item,
+  Quantity,
+  Button,
+  Count,
+  NameProduct,
+  RemoveFromCart,
+  WrapperCart,
 } from './SearchForm.styled';
 
 import { allShop } from '../../utils/db-api';
@@ -35,6 +41,7 @@ const SearchForm = () => {
   const [cartProducts, setCartProducts] = useState(
     () => JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD)) || []
   );
+  const [form, setForm] = useState([])
   // console.log(cartProducts)
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_ADD, JSON.stringify(cartProducts));
@@ -60,7 +67,6 @@ const SearchForm = () => {
 
   const countI = product => {
     const newCount = product.count + 1;
-    console.log(product);
 
     setCartProducts([...cartProducts], (product.count = newCount));
   };
@@ -71,13 +77,13 @@ const SearchForm = () => {
   };
 
   const handleSubmit = (query, { resetForm }) => {
-    if (!query.query.trim()) {
-      console.log(query);
+    if (!query) {
+      console.log('error')
       toast.error('Enter a request!', { autoClose: 1500 });
       setLoad(false);
     } else {
-      setLoad(true);
-      // const searchMovie = query !== '' ? query : {};
+      setForm([{user: query, cart: cartProducts}])
+      console.log(form);
 
       resetForm();
     }
@@ -128,7 +134,7 @@ const SearchForm = () => {
               <Field
                 type="email"
                 name="email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                pattern="[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+(\.[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+)*@([a-zA-Z0-9_][-a-zA-Z0-9_]*(\.[-a-zA-Z0-9_]+)*\.([cC][oO][mM]))(:[0-9]{1,5})?"
                 title="email must be digits and can contain spaces, dashes, parentheses and can start with +"
                 required
               />
@@ -139,40 +145,40 @@ const SearchForm = () => {
           </Forma>
         </Formik>
       }
-      {load && <Loader />}
+      {/* {load && <Loader />} */}
       {/* {searchParams ? (
         <TrendingList movies={movies} />
       ) : (
         toast.error('error', { autoClose: 1500 })
       )} */}
-      <div>
-        <h1>{products.name}</h1>
+      <WrapperCart>
+        {/* <Title>Shopping cart</Title> */}
 
-        <h2>Shopping cart</h2>
-
-        <ul>
+        <List>
           {cartProducts.length > 0
             ? cartProducts.map(item => {
                 return (
-                  <li title={item.dish} key={item.id}>
-                    <p>{item.dish}</p>
-                    {<button onClick={() => countI(item)}>+</button>}
-                    {item.count}
-                    {<button onClick={() => countD(item)}>-</button>}
+                  <Item title={item.dish} key={item.id}>
+                    <NameProduct>{item.dish}</NameProduct>
+                  <Quantity>
+                    {<Button onClick={() => countD(item)}>-</Button>}
+                    <Count>{item.count}</Count>
+                    {<Button onClick={() => countI(item)}>+</Button>}
+                  </Quantity>
                     {
-                      <button
+                      <RemoveFromCart
                         onClick={() => handleRemoveFromCart(item)}
                         type="primary"
                       >
                         delete from cart
-                      </button>
+                      </RemoveFromCart>
                     }
-                  </li>
+                  </Item>
                 );
               })
             : 'cart is empty! :('}
-        </ul>
-      </div>
+        </List>
+      </WrapperCart>
     </Wrapper>
   );
 };
