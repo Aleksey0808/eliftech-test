@@ -1,5 +1,4 @@
-// import { Outlet } from 'react-router-dom';
-import TrendingList from '../../components/TrendingList/TrendingList';
+import TrendingList from '../../components/ShopList/ShopList';
 import { allShop } from '../../utils/db-api';
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';

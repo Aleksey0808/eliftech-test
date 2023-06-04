@@ -10,7 +10,6 @@ const Layout = () => {
         <nav>
           <StyledLink to="/">Home</StyledLink>
           <StyledLink to="/cart">Cart</StyledLink>
-          <StyledLink to="/test">Test</StyledLink>
         </nav>
       </Header>
       <Suspense fallback={<Loader />}>

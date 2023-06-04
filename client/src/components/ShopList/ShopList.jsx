@@ -1,9 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { MovieLink, List } from './TrendingList.styled';
+import { MovieLink, List } from './Shop[List.styled';
 
-const TrendingList = ({ shop }) => {
-  // console.log(shop);
+const ShopList = ({ shop }) => {
   const location = useLocation();
 
   return (
@@ -21,7 +20,7 @@ const TrendingList = ({ shop }) => {
   );
 };
 
-TrendingList.prototype = {
+ShopList.prototype = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.number.isRequired,
@@ -30,4 +29,4 @@ TrendingList.prototype = {
   ),
   openModal: PropTypes.func.isRequired,
 };
-export default TrendingList;
+export default ShopList;

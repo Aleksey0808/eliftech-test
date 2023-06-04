@@ -96,8 +96,8 @@ export const Label = styled.label`
 
 export const Text = styled.p`
   font-weight: 500;
-  font-size: 18px;
-  line-height: 16px;
+  font-size: 16px;
+  line-height: 12px;
   letter-spacing: 0.03em;
   margin-bottom: 10px;
 `;
@@ -149,4 +149,18 @@ export const RemoveFromCart = styled.button`
   background-color: #e0d6ba;
   cursor: pointer;
   font-size: 15px;
+`;
+
+export const Submit = styled.button`
+  width: 200px;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: #000000;
+  background-color: #e0d6ba;
+  cursor: pointer;
+  font-size: 15px;
+`;
+
+export const Price = styled.div`
+  margin-top: 15px;
 `;

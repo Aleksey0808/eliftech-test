@@ -1,25 +1,25 @@
-import { Outlet, Link, useParams, useLocation } from 'react-router-dom';
-import { Suspense, useRef } from 'react';
+import { Link, useParams, useLocation } from 'react-router-dom';
+import { useRef } from 'react';
 import { goodsShop } from '../../utils/db-api';
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../../components/Loader/Loader';
-import Movies from '../../pages/Movies';
 
 import {
   Icon,
   Container,
   Title,
-  Text,
-  SubTitle,
   List,
-  MovieLink,
+  Cart,
+  NameProduct,
+  Price,
+  Item,
 } from './MovieDetails.styled';
 
 const LOCAL_STORAGE_ADD = 'add';
 
-const MovieDetails = () => {
+const ShopDetails = () => {
   const [cartProducts, setCartProducts] = useState(
     () => JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD)) || []
   );
@@ -41,11 +41,6 @@ const MovieDetails = () => {
         setLoad(false);
       });
   }, [_id, cartProducts]);
-
-  // const handleClickButton = e => {
-  //   const option = e.target.name;
-  //   setOrder(prevState => [option, ...prevState]);
-  // };
 
   const handleAddProductToCart = productID => {
     setCartProducts([...cartProducts, productID]);
@@ -73,9 +68,6 @@ const MovieDetails = () => {
 
       <div>
         <Title>{products.name}</Title>
-
-        <SubTitle>Overview</SubTitle>
-        <SubTitle>Genres</SubTitle>
         <List>
           {products.menu
             ? products.menu.map(item => {
@@ -86,27 +78,27 @@ const MovieDetails = () => {
                   }
                 });
                 return (
-                  <li key={item.id}>
-                    <Text>{item.dish}</Text>
-                    <Text>price:{item.price}</Text>
+                  <Item key={item.id}>
+                    <NameProduct>{item.dish}</NameProduct>
+                    <Price>price:{item.price}</Price>
                     {!haveInCart ? (
-                      <button
+                      <Cart
                         onClick={() =>
                           handleAddProductToCart({ ...item, count: 1 })
                         }
                         type="primary"
                       >
                         add to cart
-                      </button>
+                      </Cart>
                     ) : (
-                      <button
+                      <Cart
                         onClick={() => handleRemoveFromCart(item)}
                         type="primary"
                       >
                         delete from cart
-                      </button>
+                      </Cart>
                     )}
-                  </li>
+                  </Item>
                 );
               })
             : 'Sorry, we don`t have any cast information for this movie'}
@@ -116,4 +108,4 @@ const MovieDetails = () => {
   );
 };
 
-export default MovieDetails;
+export default ShopDetails;

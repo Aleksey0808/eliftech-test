@@ -69,3 +69,35 @@ export const Info = styled.p`
   font-weight: 700;
   text-decoration: dimgray;
 `;
+
+export const Cart = styled.button`
+  width: 120px;
+  height: 25px;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: #000000;
+  background-color: #e0d6ba;
+  cursor: pointer;
+  font-size: 15px;
+`;
+
+export const NameProduct = styled.p`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 6px;
+  letter-spacing: 0.01em;
+  margin-bottom: 10px;
+`;
+
+export const Price = styled.p`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 12px;
+  letter-spacing: 0.03em;
+  margin-bottom: 10px;
+`;
+
+export const Item = styled.li`
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
