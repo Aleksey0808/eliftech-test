@@ -22,11 +22,11 @@ This delivery application is a test task. You can try the app at https://aleksey
 ---
 ## Heap:
 
-- ###
+- ### Back-end
        - Node.js
        - Express
        - MongoDB
-- ### Front:
+- ### Front-end:
        - Typewritten text
        - React
        - Formik
