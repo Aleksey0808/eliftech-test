@@ -2,6 +2,7 @@
   "name": "eliftech-test",
   "version": "0.0.0",
   "private": true,
+  "homepage": "https://Aleksey0808.github.io/eliftech-test/",
   "engines": {
     "node": ">=14.20.1"
   },
