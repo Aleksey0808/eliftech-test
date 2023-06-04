@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://test-task-ookn.onrender.com';
 
 const END_POINTS = {
   all: '/api/shop/',
