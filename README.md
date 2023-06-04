@@ -2,11 +2,9 @@
 
 This delivery application is a test task. You can try the app at https://aleksey0808.github.io/shop-api/
 # To run the application:
-/server:
-1) npm i
+1) /server: npm i
 2) running npm run:dev
-/client:
-1) run npm
+3) /client: run npm
 ---
 
 ## Implemented functionality:
