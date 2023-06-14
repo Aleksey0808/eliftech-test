@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Modal from "../Modal/Modal"
+import Modal from '../Modal/Modal';
 
 import {
   Wrapper,
@@ -62,16 +62,23 @@ const CartForm = () => {
     }
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   const handleSubmit = (query, { resetForm }) => {
     if (!query) {
       console.log('error');
       toast.error('Enter a request!', { autoClose: 1500 });
     } else {
-      const total = cartProducts.reduce((acc, item) => acc + item.price * item.count, 0)
+      const total = cartProducts.reduce(
+        (acc, item) => acc + item.price * item.count,
+        0
+      );
       setForm([{ user: query, cart: cartProducts, totalPrice: total }]);
-      
-      setShowModal(true)
-      setCartProducts([])
+
+      setShowModal(true);
+      setCartProducts([]);
       resetForm();
     }
   };
@@ -134,7 +141,9 @@ const CartForm = () => {
                 <ErrorMessage name="email" component="div" />
               </Label>
 
-              <Submit onClick={()=> {}} type="submit">Checkout</Submit>
+              <Submit onClick={() => {}} type="submit">
+                Checkout
+              </Submit>
             </Forma>
           </Formik>
         }
@@ -171,11 +180,9 @@ const CartForm = () => {
             : 'cart is empty! :('}
         </List>
       </WrapperCart>
-              
-      
-      
-      {showModal && (<Modal />)}
-      </Wrapper>
+
+      {showModal && <Modal onClose={closeModal} form={form} />}
+    </Wrapper>
   );
 };
 
