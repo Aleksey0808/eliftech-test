@@ -1,11 +1,11 @@
-import SearchForm from 'components/CartForm/CartForm';
-import { MovieContainer } from './Shop.styled';
+import CartForm from 'components/CartForm/CartForm';
+import { ShopContainer } from './Shop.styled';
 
 const Shop = ({ cart }) => {
   return (
-    <MovieContainer>
-      <SearchForm cart={cart} />
-    </MovieContainer>
+    <ShopContainer>
+      <CartForm cart={cart} />
+    </ShopContainer>
   );
 };
 

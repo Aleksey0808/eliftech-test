@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Modal from "../Modal/Modal"
 
 import {
   Wrapper,
@@ -35,6 +36,7 @@ const CartForm = () => {
     () => JSON.parse(localStorage.getItem(LOCAL_STORAGE_ADD)) || []
   );
   const [form, setForm] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_ADD, JSON.stringify(cartProducts));
@@ -65,12 +67,15 @@ const CartForm = () => {
       console.log('error');
       toast.error('Enter a request!', { autoClose: 1500 });
     } else {
-      setForm([{ user: query, cart: cartProducts }]);
-      console.log(form);
-
+      const total = cartProducts.reduce((acc, item) => acc + item.price * item.count, 0)
+      setForm([{ user: query, cart: cartProducts, totalPrice: total }]);
+      
+      setShowModal(true)
+      setCartProducts([])
       resetForm();
     }
   };
+  console.log(form);
 
   const totalPrice = () => {
     return cartProducts.reduce((acc, item) => acc + item.price * item.count, 0);
@@ -129,7 +134,7 @@ const CartForm = () => {
                 <ErrorMessage name="email" component="div" />
               </Label>
 
-              <Submit type="submit">Checkout</Submit>
+              <Submit onClick={()=> {}} type="submit">Checkout</Submit>
             </Forma>
           </Formik>
         }
@@ -166,7 +171,11 @@ const CartForm = () => {
             : 'cart is empty! :('}
         </List>
       </WrapperCart>
-    </Wrapper>
+              
+      
+      
+      {showModal && (<Modal />)}
+      </Wrapper>
   );
 };
 
