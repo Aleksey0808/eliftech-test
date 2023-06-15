@@ -4,41 +4,41 @@ import {
   ModalHeader,
   ModelTitle,
   ModalBody,
+  ModalBottom,
+  TotalPrice,
+  List,
+  Item,
+  Icon,
+  Info,
 } from './Modal.styled';
 
 const Modal = ({ onClose, form }) => {
-  // console.log(form);
-
   return (
     <ModalContainer onClick={onClose}>
       <ModelContent onClick={event => event.stopPropagation()}>
         <ModalHeader>
-          <button onClick={onClose}>close</button>
-          <ModelTitle>Your cart</ModelTitle>
-          <ModalBody>
-            {form.map(({ user, cart, totalPrice }) => {
-              // console.log(cart);
-              return (
-                <div>
-                  <p>{user.name}</p>
+          <ModalBottom onClick={onClose}>
+            <Icon />
+          </ModalBottom>
+        </ModalHeader>
 
-                  {cart.map(({ dish, id, count, price }) => {
-                    return (
-                      <ul>
-                        <li key={id}>
-                          <p>product: {dish}</p>
-                          <p>count: {count}</p>
-                          <p>price: {price}</p>
-                        </li>
-                      </ul>
-                    );
-                  })}
-                  <p>Total price: {totalPrice}</p>
-                </div>
+        <ModalBody>
+          <ModelTitle>Your shopping cart {form.user}</ModelTitle>
+          <List>
+            {form.cart.map(({ dish, id, count, price }) => {
+              return (
+                <Item key={id}>
+                  <Info>Product: {dish}</Info>
+                  <Info>Count: {count}</Info>
+                  <Info>Price: {price}</Info>
+                </Item>
               );
             })}
-          </ModalBody>
-        </ModalHeader>
+          </List>
+          <div>
+            <TotalPrice>Total price: {form.totalPrice}</TotalPrice>
+          </div>
+        </ModalBody>
       </ModelContent>
     </ModalContainer>
   );

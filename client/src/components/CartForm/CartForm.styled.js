@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   align-items: flex-start;
   position: relative;
   margin-bottom: 16px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 `;
 
 export const WrapperCart = styled.div`

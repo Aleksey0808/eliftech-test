@@ -75,14 +75,14 @@ const CartForm = () => {
         (acc, item) => acc + item.price * item.count,
         0
       );
-      setForm([{ user: query, cart: cartProducts, totalPrice: total }]);
+      setForm({ user: query.name, cart: cartProducts, totalPrice: total });
 
       setShowModal(true);
       setCartProducts([]);
       resetForm();
     }
   };
-  console.log(form);
+  // console.log(form);
 
   const totalPrice = () => {
     return cartProducts.reduce((acc, item) => acc + item.price * item.count, 0);
