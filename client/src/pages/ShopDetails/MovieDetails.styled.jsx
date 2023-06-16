@@ -72,7 +72,6 @@ export const Info = styled.p`
 
 export const Cart = styled.button`
   width: 120px;
-  height: 25px;
   border: 1px solid black;
   border-radius: 5px;
   color: #000000;

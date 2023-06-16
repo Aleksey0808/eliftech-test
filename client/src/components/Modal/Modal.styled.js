@@ -15,6 +15,8 @@ export const ModalContainer = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+
+  overflow-y: auto;
 `;
 
 export const ModelContent = styled.div`
@@ -51,6 +53,8 @@ export const ModalBody = styled.div`
 
   padding: 20px;
   border: 1px solid #eee;
+
+  overflow: auto;
 `;
 
 export const ModalBottom = styled.div`

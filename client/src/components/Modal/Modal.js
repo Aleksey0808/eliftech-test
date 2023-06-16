@@ -16,6 +16,7 @@ const Modal = ({ onClose, form }) => {
   return (
     <ModalContainer onClick={onClose}>
       <ModelContent onClick={event => event.stopPropagation()}>
+        <div>
         <ModalHeader>
           <ModalBottom onClick={onClose}>
             <Icon />
@@ -35,10 +36,9 @@ const Modal = ({ onClose, form }) => {
               );
             })}
           </List>
-          <div>
             <TotalPrice>Total price: {form.totalPrice}</TotalPrice>
-          </div>
         </ModalBody>
+        </div>
       </ModelContent>
     </ModalContainer>
   );
